@@ -2,14 +2,17 @@
 <html>
   <head>
     <title>Go Program</title>
+    <script src="https://unpkg.com/htmx.org@1.9.12" integrity="sha384-ujb1lZYygJmzgSwoxRggbCHcjc0rB2XoQrxeTUQyRjrOnlCoYta87iKBWq3EsdM2" crossorigin="anonymous"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
   </head>
   <body>
-    <h1>Trying stuff in Go</h1>
-    <p>Idk what I'm doing here. Just seeing how Go works</p>
-    <ul>
-        {{range .}}
-            <li>{{.Name}}</li>
-        {{end}}
-    </ul>
+    <div>
+        <h1 class="text-4xl font-bold">Groceries</h1>
+        <ul>
+            {{range .}}
+                <li>{{.Name}}</li>
+            {{end}}
+        </ul>
+    </div>
   </body>
 </html>
