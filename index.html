@@ -8,11 +8,13 @@
   <body>
     <div>
         <h1 class="text-4xl font-bold">Groceries</h1>
-        <ul>
-            {{range .}}
-                <li>{{.Name}}</li>
-            {{end}}
-        </ul>
+        <div id="list">
+          {{template "list.html" .}}
+        </div>
+        <form hx-post="/add" hx-target="#list">
+          <input type="text" name="name" placeholder="Enter item">
+          <button type="submit">Add</button>
+        </form>
     </div>
   </body>
 </html>

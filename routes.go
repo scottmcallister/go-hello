@@ -8,7 +8,7 @@ import (
 func (app *App) Index(w http.ResponseWriter, r *http.Request) {
 	data := app.getGroceriesFromDB()
 
-	RenderTemplate(w, "index.html", data)
+	RenderTemplate(w, []string{"index.html", "list.html"}, data)
 }
 
 func (app *App) Add(w http.ResponseWriter, r *http.Request) {
@@ -25,11 +25,11 @@ func (app *App) Add(w http.ResponseWriter, r *http.Request) {
 	_ = app.addGroceryToDB(name)
 	data := app.getGroceriesFromDB()
 
-	RenderTemplate(w, "index.html", data)
+	RenderTemplate(w, []string{"list.html"}, data)
 }
 
-func RenderTemplate(w http.ResponseWriter, tmpl string, data interface{}) {
-	t, err := template.ParseFiles(tmpl)
+func RenderTemplate(w http.ResponseWriter, tmpls []string, data interface{}) {
+	t, err := template.ParseFiles(tmpls...)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
