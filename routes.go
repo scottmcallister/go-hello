@@ -45,6 +45,23 @@ func (app *App) Delete(w http.ResponseWriter, r *http.Request) {
 	RenderTemplate(w, []string{"list.html"}, data)
 }
 
+func (app *App) Toggle(w http.ResponseWriter, r *http.Request) {
+	if r.Method != http.MethodPut {
+		http.Error(w, "method not allowed", http.StatusMethodNotAllowed)
+		return
+	}
+	id := r.URL.Query().Get("id")
+	if id == "" {
+		http.Error(w, "id is required", http.StatusBadRequest)
+		return
+	}
+
+	_ = app.toggleGrocery(id)
+	data := app.getGroceriesFromDB()
+
+	RenderTemplate(w, []string{"list.html"}, data)
+}
+
 func RenderTemplate(w http.ResponseWriter, tmpls []string, data interface{}) {
 	t, err := template.ParseFiles(tmpls...)
 	if err != nil {

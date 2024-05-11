@@ -31,6 +31,7 @@ func main() {
 	http.HandleFunc("/", app.Index)
 	http.HandleFunc("/add", app.Add)
 	http.HandleFunc("/delete", app.Delete)
+	http.HandleFunc("/toggle", app.Toggle)
 
 	fmt.Println("listening on port 8080")
 	http.ListenAndServe(":8080", nil)

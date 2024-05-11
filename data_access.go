@@ -35,6 +35,15 @@ func (app *App) deleteGroceryFromDB(id string) error {
 	return nil
 }
 
+func (app *App) toggleGrocery(id string) error {
+	_, err := app.DB.Exec("UPDATE groceries SET inCart = NOT inCart WHERE id = ?", id)
+	if err != nil {
+		return err
+	}
+	fmt.Println("toggling " + id)
+	return nil
+}
+
 func rowsToGroceries(rows *sql.Rows) []Grocery {
 	if rows == nil {
 		log.Println("rows is nil")

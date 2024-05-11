@@ -1,6 +1,7 @@
 <ul>
     {{range .}}
     <li>
+        <input type="checkbox" hx-put="/toggle?id={{.ID}}" hx-trigger="change" hx-target="#list" {{if .InCart}}checked{{end}} />
         {{.Name}}
         <button hx-delete="/delete?id={{.ID}}" hx-target="#list">Delete</button>
     </li>
