@@ -1,9 +1,9 @@
-<ul>
+<ul class="w-full">
     {{range .}}
-    <li>
+    <li class="mb-5">
         <input type="checkbox" hx-put="/toggle?id={{.ID}}" hx-trigger="change" hx-target="#list" {{if .InCart}}checked{{end}} />
-        {{.Name}}
-        <button hx-delete="/delete?id={{.ID}}" hx-target="#list">Delete</button>
+        <span class="ml-5">{{.Name}}</span>
+        <button class="float-right bg-red-500 hover:bg-red-700 px-3 py-1 rounded text-white" hx-delete="/delete?id={{.ID}}" hx-target="#list">Delete</button>
     </li>
     {{end}}
 </ul>
