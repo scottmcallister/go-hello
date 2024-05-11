@@ -27,6 +27,14 @@ func (app *App) addGroceryToDB(name string) error {
 	return nil
 }
 
+func (app *App) deleteGroceryFromDB(id string) error {
+	_, err := app.DB.Exec("DELETE FROM groceries WHERE id = ?", id)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
 func rowsToGroceries(rows *sql.Rows) []Grocery {
 	if rows == nil {
 		log.Println("rows is nil")

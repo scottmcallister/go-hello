@@ -1,5 +1,8 @@
 <ul>
     {{range .}}
-    <li>{{.Name}}</li>
+    <li>
+        {{.Name}}
+        <button hx-delete="/delete?id={{.ID}}" hx-target="#list">Delete</button>
+    </li>
     {{end}}
 </ul>
